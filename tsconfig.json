@@ -1,0 +1,48 @@
+{
+  "compilerOptions": {
+    // Type Checking
+    "strict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "strictBindCallApply": false,
+    "noFallthroughCasesInSwitch": false,
+
+    // Module
+    "module": "commonjs",
+
+    // Emit
+    "declaration": true,
+    "removeComments": true,
+    "sourceMap": true,
+    "outDir": "./dist",
+
+    // Interop Constraint
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": false,
+
+    // Language and Environment
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2017",
+
+    // Projects
+    "incremental": false,
+
+    // Completeness
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
+
+    // Output Formatting
+    // Javascript support
+    // WatchOptions
+    // Backward Compatibility
+  },
+  "exclude": ["node_modules", "test", "dist", "**/*spec.ts"],
+  "include": ["src/**/*.ts", ],
+
+  "ts-node": {
+    "transpileOnly": true
+  }
+}
