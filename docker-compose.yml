@@ -1,0 +1,54 @@
+version: '3'
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: npm run start:dev
+    restart: always
+    volumes:
+    - ./:/usr/src/app
+    env_file:
+      - .env
+    depends_on:
+      - postgres-service
+    ports:
+      - '8080:8080'
+      - '9229:9229'
+    tty: true
+
+  postgres-service:
+    image: postgres:15-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - postgres13-data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:6.5
+    restart: always
+    ports:
+      - '8888:80'
+    environment:
+      PGADMIN_DEFAULT_EMAIL: dev@email.com
+      PGADMIN_DEFAULT_PASSWORD: password
+    volumes:
+      - pgadmin4-data:/var/lib/pgadmin
+    logging:
+      driver: none
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - 8082:8080
+    logging:
+      driver: none
+
+volumes:
+  pgadmin4-data:
+  postgres13-data:
